@@ -5,7 +5,22 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        if(args[0].equals("-dataType")){
+        if(Arrays.asList(args).contains("-sortIntegers")) {
+
+            ArrayList<Integer> intList = new ArrayList<>();
+            int number;
+            while (scanner.hasNextInt()) {
+                number = scanner.nextInt();
+                intList.add(number);
+            }
+            int totalIntegers = intList.size();
+            Collections.sort(intList);//sorts Arraylist in ascending order
+            System.out.println("Total numbers: " + totalIntegers);
+            System.out.print("Sorted data: ");
+            for (int num : intList) {
+                System.out.print(num + " ");
+            }
+        }else if(args[0].equals("-dataType")) {
             String type = args[1];
             switch (type) {
                 case "long" -> {
@@ -54,11 +69,11 @@ public class Main {
                     int wordFrequency = Collections.frequency(wordList, longestWord);
                     double percentage = (double)wordFrequency/totalWords*100;
                     System.out.printf("Total words: %d.\nThe longest word: %s (%d time(s), %.0f%%)."
-                    , totalWords, longestWord, wordFrequency, percentage);
+                            , totalWords, longestWord, wordFrequency, percentage);
                 }
                 default -> System.out.println("Incorrect input");
             }
-        }else{
+        } else{
             //Assumed to be of word type
             ArrayList<String> wordList = new ArrayList<>();
             String word;
